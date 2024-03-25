@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "181908410373",
+    "project_id": "fasahion-app",
+    "storage_bucket": "fasahion-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181908410373:android:8cf69f585358f370364c6c",
+        "android_client_info": {
+          "package_name": "com.example.fashion_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAipr2SjgVzD76G9kxsXO9NKt5yIXbq49Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
