@@ -24,12 +24,29 @@ class _HomePageState extends State<HomePage> {
           });
         },
       ),
-      Container(
-        color: Colors.black,
-      )
+      SingleChildScrollView(
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(30),
+              child: Text(
+                'NEW ARRİVAL',
+                style: TextStyle(
+                  color: AppColors.blackColor,
+                  fontSize: 20,
+                  letterSpacing: 4,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Bodoni',
+                ),
+              ),
+            ),
+            Image.asset(Imageurll.divider),
+          ],
+        ),
+      ),
     ];
     return Scaffold(
-      appBar: const AppbarWidget(),
+      appBar: currentIndex == 0 ? const AppbarWidget() : null,
       drawer: const Drawer(
         child: DraweWidget(),
       ),
@@ -40,6 +57,7 @@ class _HomePageState extends State<HomePage> {
             currentIndex = index;
           });
         },
+        physics: const NeverScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
         itemCount: pages.length,
         itemBuilder: (context, index) {
