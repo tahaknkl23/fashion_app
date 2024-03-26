@@ -2,6 +2,7 @@ import 'package:fashion_app/config/constants/image_url.dart';
 import 'package:fashion_app/config/items/app_colors.dart';
 import 'package:fashion_app/config/widgets/Appbar.dart';
 import 'package:fashion_app/config/widgets/Drawer.dart';
+import 'package:fashion_app/features/home/home_theme/textbutton_theme.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,20 +28,52 @@ class _HomePageState extends State<HomePage> {
       SingleChildScrollView(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.all(30),
-              child: Text(
-                'NEW ARRİVAL',
-                style: TextStyle(
-                  color: AppColors.blackColor,
-                  fontSize: 20,
-                  letterSpacing: 4,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Bodoni',
-                ),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                children: [
+                  const Text(
+                    'NEW ARRİVAL',
+                    style: TextStyle(
+                      color: AppColors.blackColor,
+                      fontSize: 20,
+                      letterSpacing: 4,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Bodoni',
+                    ),
+                  ),
+                  Image.asset(Imageurll.divider),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "All",
+                          style: TexbuttonTheme.textButton,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text("Apperal", style: TexbuttonTheme.textButton),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text("Dress", style: TexbuttonTheme.textButton),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text("Tshirt", style: TexbuttonTheme.textButton),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text("Bag", style: TexbuttonTheme.textButton),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            Image.asset(Imageurll.divider),
           ],
         ),
       ),

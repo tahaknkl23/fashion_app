@@ -8,4 +8,5 @@ class Imageurll {
   static const String search = 'assets/images/Search.png';
   static const String shopping = 'assets/images/shopping.png';
   static const String home = 'assets/images/home.png';
+  static const String resim1 = 'assets/images/resim1.png';
 }
