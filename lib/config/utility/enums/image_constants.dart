@@ -19,6 +19,11 @@ enum ImageConstants {
   grouptwo("Grouptwo"),
   groupthree("Groupthree"),
   groupfour("Groupfour"),
+  rectangleone("rectanleone"),
+  rectangletwo("rectangetwo"),
+  rectanglethree("rectanglethree"),
+  rectanglefour("rectanglefour"),
+  save("save"),
   ;
 
   final String value;
