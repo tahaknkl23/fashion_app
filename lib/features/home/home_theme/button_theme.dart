@@ -30,3 +30,26 @@ class Buton {
     );
   }
 }
+
+class TextStyleOne {
+  static const TextStyle textStyle = TextStyle(fontSize: 20);
+}
+
+class BlogButton {
+  static ElevatedButton blogButton({required String buttonText}) {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.black, backgroundColor: Colors.transparent, // Butonun yazı rengi
+        elevation: 0, // Butonun yükseltisi (gölgelenme) olmayacak
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+      child: Text(
+        buttonText,
+        style: TextStyleOne.textStyle,
+      ),
+    );
+  }
+}

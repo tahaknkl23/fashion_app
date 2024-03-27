@@ -9,7 +9,17 @@ enum ImageConstants {
   video("video"),
   topone("top_one"),
   toptwo("top_two"),
-  topthree("top_three");
+  topthree("top_three"),
+  stickerone("Stickerone"),
+  stickertwo("Stickertwo"),
+  stickerthree("Stickerthree"),
+  stickerfour("Stickerfour"),
+  stickerfive("Stickerfive"),
+  groupone("Groupone"),
+  grouptwo("Grouptwo"),
+  groupthree("Groupthree"),
+  groupfour("Groupfour"),
+  ;
 
   final String value;
   const ImageConstants(this.value);

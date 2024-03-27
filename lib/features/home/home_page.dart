@@ -4,7 +4,9 @@ import 'package:fashion_app/config/routes/app_route_names.dart';
 import 'package:fashion_app/config/utility/enums/image_constants.dart';
 import 'package:fashion_app/config/widgets/Appbar.dart';
 import 'package:fashion_app/config/widgets/Drawer.dart';
+import 'package:fashion_app/features/home/home_onboarding.dart';
 import 'package:fashion_app/features/home/home_theme/button_theme.dart';
+import 'package:fashion_app/features/home/home_theme/custom_expanded.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -283,88 +285,107 @@ class _SecondPageState extends State<SecondPage> {
                     Buton.homeButton(buttonText: "#autumncollection", onPressed: () {}),
                     Buton.homeButton(buttonText: "#openfashion", onPressed: () {}),
                   ],
-                )
+                ),
+                const Text("Open",
+                    style: TextStyle(
+                      color: AppColors.blackColor,
+                      fontSize: 20.0,
+                      fontFamily: "Playfair",
+                    )),
+                const Text("Fashion", style: TextStyle(color: AppColors.blackColor, fontSize: 20.0, fontFamily: "Playfair")),
+                const Align(
+                  heightFactor: 2,
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Making a luxurious lifestyle accessible for a generous group of women is our daily drive.",
+                    textAlign: TextAlign.center, // Metni yatayda ortalamak için TextAlign.center kullanın
+                  ),
+                ),
+                const Image(image: AssetImage(Imageurll.divider)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CustomExpandedColumn(imagePath: ImageConstants.stickerone.toPng, text: "Free shipping on orders over \$25."),
+                    CustomExpandedColumn(imagePath: ImageConstants.stickertwo.toPng, text: "Free returns on all orders."),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CustomExpandedColumn(imagePath: ImageConstants.stickerthree.toPng, text: "Unique designs and high-quality materials."),
+                    CustomExpandedColumn(imagePath: ImageConstants.stickerfour.toPng, text: "Fast shipping. Free on orders over \$25."),
+                  ],
+                ),
+                Align(heightFactor: 3, child: Image.asset(ImageConstants.stickerfive.toPng)),
+                const Text("FOLLOW US",
+                    style: TextStyle(
+                      color: AppColors.blackColor,
+                      fontSize: 20,
+                    )),
+                IconButton(onPressed: () {}, icon: Image.asset(Imageurll.instagram)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(child: Image.asset(ImageConstants.groupone.toPng)),
+                    Expanded(child: Image.asset(ImageConstants.grouptwo.toPng)),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(child: Image.asset(ImageConstants.groupthree.toPng)),
+                    Expanded(child: Image.asset(ImageConstants.groupfour.toPng)),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image.asset(Imageurll.twitter),
+                    Image.asset(Imageurll.instagram),
+                    Image.asset(Imageurll.youtube),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Image.asset(Imageurll.divider),
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(children: const [
+                    Text("support@openui.design", style: TextStyleOne.textStyle),
+                    Text("1-800-555-5555", style: TextStyleOne.textStyle),
+                    Text("Mon-Fri 9am-5pm", style: TextStyleOne.textStyle),
+                  ]),
+                ),
+                Image.asset(Imageurll.divider),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Buton.homeButton(buttonText: "ABOUT", onPressed: () {}),
+                    Buton.homeButton(buttonText: "CONTACT", onPressed: () {}),
+                    Buton.homeButton(buttonText: "PRIVACY", onPressed: () {}),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  "Copyright© OpenUI All Rights Reserved.",
+                  style: TextStyle(
+                    color: AppColors.blackColor,
+                    fontSize: 14,
+                  ),
+                ),
               ],
             ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class FirstPage extends StatefulWidget {
-  const FirstPage({
-    super.key,
-    required this.onPressed,
-  });
-  final Function() onPressed;
-
-  @override
-  State<FirstPage> createState() => _FirstPageState();
-}
-
-class _FirstPageState extends State<FirstPage> {
-  int currentIndex = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned.fill(child: Image.asset(Imageurll.home, fit: BoxFit.cover)),
-        const Positioned(
-          top: 200,
-          left: 60,
-          child: Text(
-            'LUXURY ',
-            style: TextStyle(
-              color: AppColors.brownColor,
-              fontSize: 40,
-              letterSpacing: 8,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Bodoni',
-            ),
-          ),
-        ),
-        const Positioned(
-          top: 240,
-          left: 80,
-          child: Text(
-            'FASHİON',
-            style: TextStyle(color: AppColors.brownColor, fontSize: 40, letterSpacing: 4, fontWeight: FontWeight.bold, fontFamily: 'Bodoni'),
-          ),
-        ),
-        const Positioned(
-          top: 280,
-          left: 40,
-          child: Text(
-            '& ACCESSORİES',
-            style: TextStyle(color: AppColors.brownColor, fontSize: 40, letterSpacing: 2, fontWeight: FontWeight.bold, fontFamily: 'Bodoni'),
-          ),
-        ),
-        //   En alta buton
-        Positioned(
-          bottom: 20,
-          left: 20,
-          right: 20,
-          child: ElevatedButton(
-            onPressed: widget.onPressed,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black12,
-              padding: const EdgeInsets.all(15),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-            ),
-            child: const Text(
-              "EXPLORE COLLECTION",
-              style: TextStyle(
-                color: AppColors.brownColor,
-                fontSize: 20,
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

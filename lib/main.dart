@@ -1,4 +1,4 @@
-import 'package:fashion_app/features/home/home_page.dart';
+import 'package:fashion_app/features/Blog/blog_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const BlogPage(),
     );
   }
 }
