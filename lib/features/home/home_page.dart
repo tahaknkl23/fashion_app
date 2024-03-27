@@ -1,5 +1,7 @@
 import 'package:fashion_app/config/constants/image_url.dart';
 import 'package:fashion_app/config/items/app_colors.dart';
+import 'package:fashion_app/config/routes/app_route_names.dart';
+import 'package:fashion_app/config/utility/enums/image_constants.dart';
 import 'package:fashion_app/config/widgets/Appbar.dart';
 import 'package:fashion_app/config/widgets/Drawer.dart';
 import 'package:fashion_app/features/home/home_theme/textbutton_theme.dart';
@@ -14,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
+
   final PageController _scrollController = PageController();
   @override
   Widget build(BuildContext context) {
@@ -46,31 +49,120 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "All",
-                          style: TexbuttonTheme.textButton,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text("Apperal", style: TexbuttonTheme.textButton),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text("Dress", style: TexbuttonTheme.textButton),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text("Tshirt", style: TexbuttonTheme.textButton),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text("Bag", style: TexbuttonTheme.textButton),
-                      ),
+                      textbuttonThemeHome("ALL"),
+                      textbuttonThemeHome("APPAREL"),
+                      textbuttonThemeHome("DRESS"),
+                      textbuttonThemeHome("TSHIRT"),
+                      textbuttonThemeHome("BAG"),
                     ],
                   ),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.7,
+                    ),
+                    itemCount: 4,
+                    itemBuilder: (BuildContext context, int index) {
+                      return SizedBox(
+                        child: Column(
+                          children: [
+                            Image.asset(ImageConstants.productOne.toPng, fit: BoxFit.cover),
+                            const Text(
+                              "21WN reversible angora cardigan",
+                              textAlign: TextAlign.center,
+                            ),
+                            const Text(
+                              "\$120",
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            AppRouteNames.categorypage;
+                          },
+                          child: const Text(
+                            "Explore More",
+                            style: TextStyle(color: AppColors.blackColor, fontSize: 20, fontWeight: FontWeight.bold),
+                          )),
+                      const Icon(
+                        Icons.arrow_forward_outlined,
+                        color: AppColors.blackColor,
+                        size: 20,
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Image.asset(Imageurll.divider),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      childAspectRatio: 2,
+                    ),
+                    itemCount: 6,
+                    itemBuilder: (BuildContext context, int index) {
+                      List<ImageConstants> images = [
+                        ImageConstants.prada,
+                        ImageConstants.boss,
+                        ImageConstants.catier,
+                        ImageConstants.gucci,
+                        ImageConstants.tifanniy,
+                        ImageConstants.burberry
+                      ];
+                      return SizedBox(
+                        child: Column(
+                          children: [
+                            Image.asset(images[index].toPng, fit: BoxFit.cover),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  Image.asset(Imageurll.divider),
+                  const Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      'COLLECTIONS',
+                      style: TextStyle(
+                        color: AppColors.blackColor,
+                        fontSize: 20,
+                        letterSpacing: 4,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Bodoni',
+                      ),
+                    ),
+                  ),
+                  Image.asset(ImageConstants.topone.toPng, fit: BoxFit.cover),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Image.asset(ImageConstants.toptwo.toPng, fit: BoxFit.cover),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Image.asset(ImageConstants.topthree.toPng, fit: BoxFit.cover),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Text("JUST FOR YOU",
+                      style:
+                          TextStyle(color: AppColors.blackColor, fontSize: 20, letterSpacing: 4, fontWeight: FontWeight.bold, fontFamily: 'Bodoni')),
+                  Image.asset(Imageurll.divider),
                 ],
               ),
             ),
