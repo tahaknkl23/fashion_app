@@ -4,7 +4,7 @@ import 'package:fashion_app/config/routes/app_route_names.dart';
 import 'package:fashion_app/config/utility/enums/image_constants.dart';
 import 'package:fashion_app/config/widgets/Appbar.dart';
 import 'package:fashion_app/config/widgets/Drawer.dart';
-import 'package:fashion_app/features/home/home_theme/textbutton_theme.dart';
+import 'package:fashion_app/features/home/home_theme/button_theme.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,147 +28,7 @@ class _HomePageState extends State<HomePage> {
           });
         },
       ),
-      SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Column(
-                children: [
-                  const Text(
-                    'NEW ARRİVAL',
-                    style: TextStyle(
-                      color: AppColors.blackColor,
-                      fontSize: 20,
-                      letterSpacing: 4,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Bodoni',
-                    ),
-                  ),
-                  Image.asset(Imageurll.divider),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      textbuttonThemeHome("ALL"),
-                      textbuttonThemeHome("APPAREL"),
-                      textbuttonThemeHome("DRESS"),
-                      textbuttonThemeHome("TSHIRT"),
-                      textbuttonThemeHome("BAG"),
-                    ],
-                  ),
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.7,
-                    ),
-                    itemCount: 4,
-                    itemBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        child: Column(
-                          children: [
-                            Image.asset(ImageConstants.productOne.toPng, fit: BoxFit.cover),
-                            const Text(
-                              "21WN reversible angora cardigan",
-                              textAlign: TextAlign.center,
-                            ),
-                            const Text(
-                              "\$120",
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            AppRouteNames.categorypage;
-                          },
-                          child: const Text(
-                            "Explore More",
-                            style: TextStyle(color: AppColors.blackColor, fontSize: 20, fontWeight: FontWeight.bold),
-                          )),
-                      const Icon(
-                        Icons.arrow_forward_outlined,
-                        color: AppColors.blackColor,
-                        size: 20,
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Image.asset(Imageurll.divider),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 2,
-                    ),
-                    itemCount: 6,
-                    itemBuilder: (BuildContext context, int index) {
-                      List<ImageConstants> images = [
-                        ImageConstants.prada,
-                        ImageConstants.boss,
-                        ImageConstants.catier,
-                        ImageConstants.gucci,
-                        ImageConstants.tifanniy,
-                        ImageConstants.burberry
-                      ];
-                      return SizedBox(
-                        child: Column(
-                          children: [
-                            Image.asset(images[index].toPng, fit: BoxFit.cover),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                  Image.asset(Imageurll.divider),
-                  const Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Text(
-                      'COLLECTIONS',
-                      style: TextStyle(
-                        color: AppColors.blackColor,
-                        fontSize: 20,
-                        letterSpacing: 4,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Bodoni',
-                      ),
-                    ),
-                  ),
-                  Image.asset(ImageConstants.topone.toPng, fit: BoxFit.cover),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Image.asset(ImageConstants.toptwo.toPng, fit: BoxFit.cover),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Image.asset(ImageConstants.topthree.toPng, fit: BoxFit.cover),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Text("JUST FOR YOU",
-                      style:
-                          TextStyle(color: AppColors.blackColor, fontSize: 20, letterSpacing: 4, fontWeight: FontWeight.bold, fontFamily: 'Bodoni')),
-                  Image.asset(Imageurll.divider),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+      const SecondPage(),
     ];
     return Scaffold(
       appBar: currentIndex == 0 ? const AppbarWidget() : null,
@@ -193,13 +53,259 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class FirstPage extends StatelessWidget {
+class SecondPage extends StatefulWidget {
+  const SecondPage({
+    super.key,
+  });
+
+  @override
+  State<SecondPage> createState() => _SecondPageState();
+}
+
+class _SecondPageState extends State<SecondPage> {
+  final PageController _scrollController = PageController(
+    initialPage: 0,
+    viewportFraction: 0.7,
+  );
+  int currentIndex = 0;
+  double transformValue = 0;
+
+  void changePage(int index) {
+    _scrollController.animateToPage(index, duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Column(
+              children: [
+                const Text(
+                  'NEW ARRİVAL',
+                  style: TextStyle(
+                    color: AppColors.blackColor,
+                    fontSize: 20,
+                    letterSpacing: 4,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Bodoni',
+                  ),
+                ),
+                Image.asset(Imageurll.divider),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    textbuttonThemeHome("ALL"),
+                    textbuttonThemeHome("APPAREL"),
+                    textbuttonThemeHome("DRESS"),
+                    textbuttonThemeHome("TSHIRT"),
+                    textbuttonThemeHome("BAG"),
+                  ],
+                ),
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.7,
+                  ),
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      child: Column(
+                        children: [
+                          Image.asset(ImageConstants.productOne.toPng, fit: BoxFit.cover),
+                          const Text(
+                            "21WN reversible angora cardigan",
+                            textAlign: TextAlign.center,
+                          ),
+                          const Text(
+                            "\$120",
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          AppRouteNames.categorypage;
+                        },
+                        child: const Text(
+                          "Explore More",
+                          style: TextStyle(color: AppColors.blackColor, fontSize: 20, fontWeight: FontWeight.bold),
+                        )),
+                    const Icon(
+                      Icons.arrow_forward_outlined,
+                      color: AppColors.blackColor,
+                      size: 20,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Image.asset(Imageurll.divider),
+                const SizedBox(
+                  height: 20,
+                ),
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 2,
+                  ),
+                  itemCount: 6,
+                  itemBuilder: (BuildContext context, int index) {
+                    List<ImageConstants> images = [
+                      ImageConstants.prada,
+                      ImageConstants.boss,
+                      ImageConstants.catier,
+                      ImageConstants.gucci,
+                      ImageConstants.tifanniy,
+                      ImageConstants.burberry
+                    ];
+                    return SizedBox(
+                      child: Column(
+                        children: [
+                          Image.asset(images[index].toPng, fit: BoxFit.cover),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                Image.asset(Imageurll.divider),
+                const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text(
+                    'COLLECTIONS',
+                    style: TextStyle(
+                      color: AppColors.blackColor,
+                      fontSize: 20,
+                      letterSpacing: 4,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Bodoni',
+                    ),
+                  ),
+                ),
+                Image.asset(ImageConstants.topone.toPng, fit: BoxFit.cover),
+                const SizedBox(
+                  height: 20,
+                ),
+                Image.asset(ImageConstants.toptwo.toPng, fit: BoxFit.cover),
+                const SizedBox(
+                  height: 20,
+                ),
+                Image.asset(ImageConstants.topthree.toPng, fit: BoxFit.cover),
+                const SizedBox(
+                  height: 30,
+                ),
+                const Text("JUST FOR YOU",
+                    style: TextStyle(color: AppColors.blackColor, fontSize: 20, letterSpacing: 4, fontWeight: FontWeight.bold, fontFamily: 'Bodoni')),
+                Image.asset(Imageurll.divider),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 300,
+                  child: PageView.builder(
+                    scrollDirection: Axis.horizontal,
+                    controller: _scrollController,
+                    padEnds: false,
+                    itemCount: 4,
+                    onPageChanged: (index) {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    },
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          changePage(index);
+                        },
+                        child: Column(
+                          children: [
+                            Expanded(child: Image.asset(ImageConstants.productOne.toPng, fit: BoxFit.cover)),
+                            const Text(
+                              "21WN reversible angora cardigan",
+                              textAlign: TextAlign.center,
+                            ),
+                            const Text(
+                              "\$120",
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    for (int i = 0; i < 4; i++)
+                      Transform.rotate(
+                        angle: 0.75,
+                        child: Container(
+                          margin: const EdgeInsets.all(5),
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: currentIndex == i ? AppColors.blackColor : Colors.grey,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                const Text("@ TRENDİNG",
+                    style: TextStyle(color: AppColors.blackColor, fontSize: 20, letterSpacing: 4, fontWeight: FontWeight.bold, fontFamily: 'Bodoni')),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Buton.homeButton(buttonText: "#2021", onPressed: () {}),
+                    Buton.homeButton(buttonText: "#spring", onPressed: () {}),
+                    Buton.homeButton(buttonText: "#collection", onPressed: () {}),
+                    Buton.homeButton(buttonText: "#fall", onPressed: () {}),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Buton.homeButton(buttonText: "#dress", onPressed: () {}),
+                    Buton.homeButton(buttonText: "#autumncollection", onPressed: () {}),
+                    Buton.homeButton(buttonText: "#openfashion", onPressed: () {}),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FirstPage extends StatefulWidget {
   const FirstPage({
     super.key,
     required this.onPressed,
   });
   final Function() onPressed;
 
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -241,7 +347,7 @@ class FirstPage extends StatelessWidget {
           left: 20,
           right: 20,
           child: ElevatedButton(
-            onPressed: onPressed,
+            onPressed: widget.onPressed,
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black12,
               padding: const EdgeInsets.all(15),
