@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:fashion_app/config/constants/image_url.dart';
 import 'package:fashion_app/config/items/app_colors.dart';
+import 'package:flutter/material.dart';
 
 class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppbarWidget({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
                 style: TextStyle(
                   color: AppColors.blackColor,
                   fontSize: 20.0,
-                  fontFamily: "Playfair",
+                  fontFamily: "Tenor",
                 )),
             Text("Fashion", style: TextStyle(color: AppColors.blackColor, fontSize: 20.0, fontFamily: "Playfair")),
           ],

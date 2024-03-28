@@ -5,8 +5,8 @@ import 'package:fashion_app/features/home/home_theme/button_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:fashion_app/config/constants/image_url.dart';
 import 'package:fashion_app/config/items/app_colors.dart';
-import 'package:fashion_app/config/widgets/Appbar.dart';
-import 'package:fashion_app/config/widgets/Drawer.dart';
+import 'package:fashion_app/config/widgets/appbar.dart';
+import 'package:fashion_app/config/widgets/drawer.dart';
 
 class BlogPage extends StatefulWidget {
   const BlogPage({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _BlogPageState extends State<BlogPage> {
     "Lifestyle",
   ];
   void _handleItemClick(String item) {
-    print("Clicked on $item");
+   
   }
 
   final List<Map<String, dynamic>> blogItemstwo = [

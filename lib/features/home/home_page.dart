@@ -2,8 +2,8 @@ import 'package:fashion_app/config/constants/image_url.dart';
 import 'package:fashion_app/config/items/app_colors.dart';
 import 'package:fashion_app/config/routes/app_route_names.dart';
 import 'package:fashion_app/config/utility/enums/image_constants.dart';
-import 'package:fashion_app/config/widgets/Appbar.dart';
-import 'package:fashion_app/config/widgets/Drawer.dart';
+import 'package:fashion_app/config/widgets/appbar.dart';
+import 'package:fashion_app/config/widgets/drawer.dart';
 import 'package:fashion_app/config/widgets/iletisim.dart';
 import 'package:fashion_app/features/home/home_onboarding.dart';
 import 'package:fashion_app/features/home/home_theme/button_theme.dart';
@@ -222,7 +222,7 @@ class _SecondPageState extends State<SecondPage> {
                     scrollDirection: Axis.horizontal,
                     controller: _scrollController,
                     padEnds: false,
-                    itemCount: 4,
+                    itemCount: 3,
                     onPageChanged: (index) {
                       setState(() {
                         currentIndex = index;
@@ -253,13 +253,13 @@ class _SecondPageState extends State<SecondPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 3; i++)
                       Transform.rotate(
                         angle: 0.75,
                         child: Container(
-                          margin: const EdgeInsets.all(5),
-                          width: 10,
-                          height: 10,
+                          margin: const EdgeInsets.all(8),
+                          width: 8,
+                          height: 8,
                           decoration: BoxDecoration(
                             color: currentIndex == i ? AppColors.blackColor : Colors.grey,
                           ),

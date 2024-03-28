@@ -24,6 +24,8 @@ enum ImageConstants {
   rectanglethree("rectanglethree"),
   rectanglefour("rectanglefour"),
   save("save"),
+  blogone("blogone"),
+  blogtwo("blogtwo"),
   ;
 
   final String value;
