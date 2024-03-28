@@ -92,6 +92,9 @@ flutter:
     - family: Playfair
       fonts:
         - asset: assets/fonts/Playfair.ttf
+    - family: Tenor
+      fonts:
+        - asset: assets/fonts/Tenor.ttf
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf

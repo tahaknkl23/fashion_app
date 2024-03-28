@@ -4,6 +4,7 @@ import 'package:fashion_app/config/routes/app_route_names.dart';
 import 'package:fashion_app/config/utility/enums/image_constants.dart';
 import 'package:fashion_app/config/widgets/Appbar.dart';
 import 'package:fashion_app/config/widgets/Drawer.dart';
+import 'package:fashion_app/config/widgets/iletisim.dart';
 import 'package:fashion_app/features/home/home_onboarding.dart';
 import 'package:fashion_app/features/home/home_theme/button_theme.dart';
 import 'package:fashion_app/features/home/home_theme/custom_expanded.dart';
@@ -336,51 +337,7 @@ class _SecondPageState extends State<SecondPage> {
                     Expanded(child: Image.asset(ImageConstants.groupfour.toPng)),
                   ],
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Image.asset(Imageurll.twitter),
-                    Image.asset(Imageurll.instagram),
-                    Image.asset(Imageurll.youtube),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Image.asset(Imageurll.divider),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(children: const [
-                    Text("support@openui.design", style: TextStyleOne.textStyle),
-                    Text("1-800-555-5555", style: TextStyleOne.textStyle),
-                    Text("Mon-Fri 9am-5pm", style: TextStyleOne.textStyle),
-                  ]),
-                ),
-                Image.asset(Imageurll.divider),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Buton.homeButton(buttonText: "ABOUT", onPressed: () {}),
-                    Buton.homeButton(buttonText: "CONTACT", onPressed: () {}),
-                    Buton.homeButton(buttonText: "PRIVACY", onPressed: () {}),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Copyright© OpenUI All Rights Reserved.",
-                  style: TextStyle(
-                    color: AppColors.blackColor,
-                    fontSize: 14,
-                  ),
-                ),
+                const Iletisim(),
               ],
             ),
           ),

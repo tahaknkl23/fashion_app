@@ -1,4 +1,6 @@
+import 'package:fashion_app/config/routes/app_route_names.dart';
 import 'package:fashion_app/config/utility/enums/image_constants.dart';
+import 'package:fashion_app/config/widgets/iletisim.dart';
 import 'package:fashion_app/features/home/home_theme/button_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:fashion_app/config/constants/image_url.dart';
@@ -16,7 +18,7 @@ class BlogPage extends StatefulWidget {
 class _BlogPageState extends State<BlogPage> {
   final List<String> blogItems = [
     "Fashion",
-    "Promo",
+    "Promos",
     "Policy",
     "Lookbook",
     "Beauty",
@@ -82,53 +84,126 @@ class _BlogPageState extends State<BlogPage> {
                 },
               ),
             ),
-            SizedBox(
-              height: 500,
-              child: ListView.builder(
-                itemCount: blogItemstwo.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Image.asset(blogItemstwo[index]["image"]),
-                            Positioned(
-                              top: 10,
-                              right: 10,
-                              child: IconButton(onPressed: () {}, icon: const Icon(Icons.save, color: AppColors.whiteColor, size: 30)),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: blogItemstwo.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          AspectRatio(
+                            aspectRatio: 1.7,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, AppRouteNames.postpage);
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      blogItemstwo[index]["image"],
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
                             ),
-                            Positioned(
-                              bottom: 10,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: const [
-                                  Text("2021 Style Guide: The Biggest",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        color: AppColors.whiteColor,
-                                      )),
-                                  Text("Fall Trends", style: TextStyle(fontSize: 15, color: AppColors.whiteColor))
+                          ),
+                          Positioned(
+                            top: 10,
+                            right: 10,
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Image(
+                                image: AssetImage(
+                                  ImageConstants.save.toPng,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.transparent,
+                                  Colors.black45,
+                                  Colors.black,
                                 ],
                               ),
                             ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Buton.homeButton(buttonText: "#Fashion", onPressed: () {}),
-                            Buton.homeButton(buttonText: "#Tips", onPressed: () {}),
-                          ],
-                        ),
-                      ],
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: const [
+                                Text(
+                                  "2021 Style Guide: The Biggest Fall Trends",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: AppColors.whiteColor,
+                                    fontFamily: "Tenor",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Buton.homeButton(buttonText: "#Fashion", onPressed: () {}),
+                          Buton.homeButton(
+                            buttonText: "#Tips",
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            Container(
+              width: 200,
+              height: 50,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRouteNames.homepage);
+                    },
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0),
+                      backgroundColor: MaterialStateProperty.all(Colors.transparent),
                     ),
-                  );
-                },
+                    child: const Text(
+                      "Load More",
+                      style: TextStyle(color: AppColors.blackColor),
+                      textScaleFactor: 1.5,
+                    ),
+                  ),
+                  const Icon(
+                    Icons.add,
+                    color: AppColors.blackColor,
+                    size: 30,
+                  )
+                ],
               ),
             ),
+            const Iletisim(),
           ],
         ),
       ),
