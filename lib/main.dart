@@ -1,5 +1,5 @@
 import 'package:fashion_app/config/routes/routes.dart';
-import 'package:fashion_app/features/category/category_page.dart';
+import 'package:fashion_app/features/Detail/detail_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CategoryPage(),
+      home: const DetailPage(),
       onGenerateRoute: AppRoutes.onGenerateRoutes,
     );
   }

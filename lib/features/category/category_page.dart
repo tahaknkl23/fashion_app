@@ -1,3 +1,4 @@
+import 'package:fashion_app/config/routes/app_route_names.dart';
 import 'package:fashion_app/config/utility/enums/image_constants.dart';
 import 'package:fashion_app/config/widgets/appbar.dart';
 import 'package:fashion_app/config/widgets/drawer.dart';
@@ -52,35 +53,33 @@ class _CategoryPageState extends State<CategoryPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Text(
-                    "4500 APPERAL",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontFamily: "Tenor",
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text(
+                  "4500 APPERAL",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontFamily: "Tenor",
                   ),
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                    ),
-                    onPressed: () {},
-                    label: const Text(
-                      "NEW",
-                      style: TextStyle(fontFamily: "Tenor"),
-                    ),
-                    icon: const Icon(Icons.arrow_drop_down),
+                ),
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                   ),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.list)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.filter_list_sharp)),
-                ],
-              ),
+                  onPressed: () {},
+                  label: const Text(
+                    "NEW",
+                    style: TextStyle(fontFamily: "Tenor"),
+                  ),
+                  icon: const Icon(Icons.arrow_drop_down),
+                ),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.list)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.filter_list_sharp)),
+              ],
             ),
             const SizedBox(
               height: 20,
@@ -97,7 +96,11 @@ class _CategoryPageState extends State<CategoryPage> {
                 return SizedBox(
                   child: Column(
                     children: [
-                      Image.asset(ImageConstants.productOne.toPng, fit: BoxFit.cover),
+                      GestureDetector(
+                          onTap: () {
+                            AppRouteNames.detailpage;
+                          },
+                          child: Image.asset(ImageConstants.productOne.toPng, fit: BoxFit.cover)),
                       const Text(
                         "21WN reversible angora cardigan",
                         textAlign: TextAlign.center,

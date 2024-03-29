@@ -1,5 +1,6 @@
 import 'package:fashion_app/config/routes/app_route_names.dart';
-import 'package:fashion_app/features/category/category_page.dart';
+import 'package:fashion_app/features/Category/category_page.dart';
+import 'package:fashion_app/features/Detail/detail_page.dart';
 import 'package:fashion_app/features/home/home_page.dart';
 import 'package:fashion_app/features/post/blog_post_age.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,9 @@ class AppRoutes {
 
       case AppRouteNames.postpage:
         return _materialRoute(const BlogPostPage());
+
+      case AppRouteNames.detailpage:
+        return _materialRoute(const DetailPage());
 
       default:
         return _materialRoute(const HomePage());
