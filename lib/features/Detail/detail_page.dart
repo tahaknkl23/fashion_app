@@ -90,7 +90,7 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(Icons.favorite_border),
+                        icon: const Icon(Icons.ios_share_rounded),
                       ),
                     ],
                   ),
