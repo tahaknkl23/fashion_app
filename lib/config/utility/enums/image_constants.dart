@@ -27,6 +27,7 @@ enum ImageConstants {
   blogone("blogone"),
   blogtwo("blogtwo"),
   detailone("detailone"),
+  icone("ıcon"),
   ;
 
   final String value;

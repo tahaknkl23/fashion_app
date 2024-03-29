@@ -2,6 +2,7 @@ import 'package:fashion_app/config/items/app_colors.dart';
 import 'package:fashion_app/config/utility/enums/image_constants.dart';
 import 'package:fashion_app/config/widgets/appbar.dart';
 import 'package:fashion_app/config/widgets/drawer.dart';
+import 'package:fashion_app/features/Detail/widget/detail_page_widget.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
@@ -76,25 +77,36 @@ class _DetailPageState extends State<DetailPage> {
             ),
             Container(
               margin: const EdgeInsets.only(left: 20, right: 20),
-              child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "MOHAN",
-                      style: TextStyle(
-                        fontFamily: "Teros",
-                        fontSize: 20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start, // Align children to the start (left)
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "MOHAN",
+                        style: containerTextstyle.textstyle,
+                        textAlign: TextAlign.right,
                       ),
-                      textAlign: TextAlign.right,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.favorite_border),
-                    ),
-                  ],
-                )
-              ]),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.favorite_border),
+                      ),
+                    ],
+                  ),
+                  const Text(
+                    "Recycle Boucle Knit Cardigan Pink",
+                    style: containerTextstyle.textstyle,
+                  ),
+                  const Text(
+                    "\$120",
+                    style: TextStyle(
+                      color: AppColors.orengeColor,
+                      fontSize: 22,
+                    ), // You can adjust the style as needed
+                  ),
+                ],
+              ),
             )
           ],
         ),
