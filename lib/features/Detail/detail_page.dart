@@ -98,12 +98,45 @@ class _DetailPageState extends State<DetailPage> {
                     "Recycle Boucle Knit Cardigan Pink",
                     style: containerTextstyle.textstyle,
                   ),
-                  const Text(
-                    "\$120",
-                    style: TextStyle(
-                      color: AppColors.orengeColor,
-                      fontSize: 22,
-                    ), // You can adjust the style as needed
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        "\$120",
+                        style: TextStyle(
+                          color: AppColors.orengeColor,
+                          fontSize: 22,
+                        ), // You can adjust the style as needed
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Color",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      BuildColorButton.buildColorButton(Colors.black),
+                      const SizedBox(width: 8),
+                      BuildColorButton.buildColorButton(Colors.orange),
+                      const SizedBox(width: 8),
+                      BuildColorButton.buildColorButton(Colors.grey),
+                      const SizedBox(width: 8),
+                      const Text(
+                        "Size",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      BuildSizeButton.buildSizeButton("S"),
+                      BuildSizeButton.buildSizeButton("M"),
+                      BuildSizeButton.buildSizeButton("L"),
+                    ],
                   ),
                 ],
               ),
