@@ -138,6 +138,24 @@ class _DetailPageState extends State<DetailPage> {
                       BuildSizeButton.buildSizeButton("L"),
                     ],
                   ),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    label: Row(
+                      mainAxisSize: MainAxisSize.min, // Yalnızca içerik kadar alan kapla
+                      children: const [
+                        Text(
+                          "ADD TO BASKET",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        SizedBox(width: 8), // İçerikler arasında boşluk bırak
+                        Icon(Icons.add),
+                      ],
+                    ),
+                    icon: const Icon(Icons.favorite_border),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                    ),
+                  )
                 ],
               ),
             )
