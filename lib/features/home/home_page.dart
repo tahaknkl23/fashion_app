@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_app/config/constants/image_url.dart';
 import 'package:fashion_app/config/items/app_colors.dart';
 import 'package:fashion_app/config/routes/app_route_names.dart';
@@ -8,6 +9,7 @@ import 'package:fashion_app/config/widgets/iletisim.dart';
 import 'package:fashion_app/features/home/home_onboarding.dart';
 import 'package:fashion_app/features/home/home_theme/button_theme.dart';
 import 'package:fashion_app/features/home/home_theme/custom_expanded.dart';
+import 'package:fashion_app/models/dress_model.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -107,32 +109,70 @@ class _SecondPageState extends State<SecondPage> {
                     textbuttonThemeHome("BAG"),
                   ],
                 ),
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.7,
-                  ),
-                  itemCount: 4,
-                  itemBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      child: Column(
-                        children: [
-                          Image.asset(ImageConstants.productOne.toPng, fit: BoxFit.cover),
-                          const Text(
-                            "21WN reversible angora cardigan",
-                            textAlign: TextAlign.center,
-                          ),
-                          const Text(
-                            "\$120",
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    );
+                // ElevatedButton(
+                //     onPressed: () async {
+                //       final response = await FirebaseFirestore.instance.collection("dreeses").get();
+                //       print(response.docs[0].data()["price"]);
+                //     },
+                //     child: const Text("Explore More")),
+                // ElevatedButton(
+                //     onPressed: () async {
+                //       final response = await FirebaseFirestore.instance.collection("dreeses").get();
+                //       print(response.docs[0].data());
+                //       final model = DressModel.fromMap(response.docs[0].data());
+                //       print(model.description);
+
+                //       final model = DressModel(description: "vahan", imageUrl: "daşllskdls", price: 12, title: "doaoksoş", type: "dlkasml");
+                //       print(model.toMap());
+                //       await FirebaseFirestore.instance.collection("dreeses").add(model.toMap());
+                //     },
+                //     child: const Text("Explore More")),
+                FutureBuilder(
+                  future: FirebaseFirestore.instance.collection("dreeses").get(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return const Text("Error");
+                    } else if (snapshot.hasData) {
+                      final response = snapshot.data;
+                      if (response == null) {
+                        return const Text("Error");
+                      }
+                      return SizedBox(
+                        height: 300,
+                        child: GridView.builder(
+                            itemCount: response.docs.length ?? 0,
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisExtent: 300,
+                              crossAxisSpacing: 10,
+                              childAspectRatio: 2,
+                            ),
+                            itemBuilder: (context, index) {
+                              final model = DressModel.fromMap(response.docs[index].data());
+
+                              return Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.network(height: 150, fit: BoxFit.contain, model.imageUrl),
+                                    Text(
+                                      model.description,
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    Text(model.price.toString()),
+                                  ],
+                                ),
+                              );
+                            }),
+                      );
+                    } else {
+                      return const Text("Error");
+                    }
                   },
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

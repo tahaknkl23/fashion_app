@@ -9,7 +9,7 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.homeColor,
   );
 
-  static final ThemeData darkTheme = ThemeData(primarySwatch: Colors.blue, useMaterial3: true, scaffoldBackgroundColor: AppColors.errorColor);
+  static final ThemeData darkTheme = ThemeData(primarySwatch: Colors.blue, useMaterial3: true, scaffoldBackgroundColor: AppColors.whiteColor);
 
   static const TextStyle weatherTextStyle = TextStyle(
     fontSize: 24,
