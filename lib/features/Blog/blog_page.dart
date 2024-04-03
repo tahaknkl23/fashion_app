@@ -24,9 +24,7 @@ class _BlogPageState extends State<BlogPage> {
     "Beauty",
     "Lifestyle",
   ];
-  void _handleItemClick(String item) {
-   
-  }
+  void _handleItemClick(String item) {}
 
   final List<Map<String, dynamic>> blogItemstwo = [
     {"title": "Fashion", "image": ImageConstants.rectangleone.toPng},

@@ -5,9 +5,9 @@ class TexbuttonTheme {
   static const TextStyle textButton = TextStyle(color: AppColors.blackColor, fontSize: 16, fontWeight: FontWeight.bold);
 }
 
-TextButton textbuttonThemeHome(String text) {
+TextButton textbuttonThemeHome(String text, Function() buton) {
   return TextButton(
-    onPressed: () {},
+    onPressed: buton,
     child: Text(
       text,
       style: TexbuttonTheme.textButton,

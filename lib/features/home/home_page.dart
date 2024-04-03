@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_app/config/constants/image_url.dart';
 import 'package:fashion_app/config/items/app_colors.dart';
@@ -6,6 +7,7 @@ import 'package:fashion_app/config/utility/enums/image_constants.dart';
 import 'package:fashion_app/config/widgets/appbar.dart';
 import 'package:fashion_app/config/widgets/drawer.dart';
 import 'package:fashion_app/config/widgets/iletisim.dart';
+import 'package:fashion_app/features/Detail/detail_page.dart';
 import 'package:fashion_app/features/home/home_onboarding.dart';
 import 'package:fashion_app/features/home/home_theme/button_theme.dart';
 import 'package:fashion_app/features/home/home_theme/custom_expanded.dart';
@@ -67,6 +69,8 @@ class SecondPage extends StatefulWidget {
   State<SecondPage> createState() => _SecondPageState();
 }
 
+String _type = "";
+
 class _SecondPageState extends State<SecondPage> {
   final PageController _scrollController = PageController(
     initialPage: 0,
@@ -74,6 +78,16 @@ class _SecondPageState extends State<SecondPage> {
   );
   int currentIndex = 0;
   double transformValue = 0;
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getReguest() async {
+    if (_type == "") {
+      final snaps = await FirebaseFirestore.instance.collection("dreeses").get();
+      return snaps;
+    } else {
+      final snaps = await FirebaseFirestore.instance.collection("dreeses").where("type", isEqualTo: _type).get();
+      return snaps;
+    }
+  }
 
   void changePage(int index) {
     _scrollController.animateToPage(index, duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
@@ -102,11 +116,31 @@ class _SecondPageState extends State<SecondPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    textbuttonThemeHome("ALL"),
-                    textbuttonThemeHome("APPAREL"),
-                    textbuttonThemeHome("DRESS"),
-                    textbuttonThemeHome("TSHIRT"),
-                    textbuttonThemeHome("BAG"),
+                    textbuttonThemeHome("ALL", () {
+                      setState(() {
+                        _type = "";
+                      });
+                    }),
+                    textbuttonThemeHome("APPAREL", () {
+                      setState(() {
+                        _type = "apparel";
+                      });
+                    }),
+                    textbuttonThemeHome("DRESS", () {
+                      setState(() {
+                        _type = "dress";
+                      });
+                    }),
+                    textbuttonThemeHome("TSHIRT", () {
+                      setState(() {
+                        _type = "tshirt";
+                      });
+                    }),
+                    textbuttonThemeHome("BAG", () {
+                      setState(() {
+                        _type = "bag";
+                      });
+                    }),
                   ],
                 ),
                 // ElevatedButton(
@@ -128,7 +162,7 @@ class _SecondPageState extends State<SecondPage> {
                 //     },
                 //     child: const Text("Explore More")),
                 FutureBuilder(
-                  future: FirebaseFirestore.instance.collection("dreeses").get(),
+                  future: getReguest(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();
@@ -142,7 +176,7 @@ class _SecondPageState extends State<SecondPage> {
                       return SizedBox(
                         height: 300,
                         child: GridView.builder(
-                            itemCount: response.docs.length ?? 0,
+                            itemCount: response.docs.length,
                             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               mainAxisExtent: 300,
@@ -161,7 +195,7 @@ class _SecondPageState extends State<SecondPage> {
                                       model.description,
                                       textAlign: TextAlign.start,
                                     ),
-                                    Text(model.price.toString()),
+                                    Text(model.type.toString()),
                                   ],
                                 ),
                               );
@@ -258,37 +292,26 @@ class _SecondPageState extends State<SecondPage> {
                 ),
                 SizedBox(
                   height: 300,
-                  child: PageView.builder(
-                    scrollDirection: Axis.horizontal,
-                    controller: _scrollController,
-                    padEnds: false,
-                    itemCount: 3,
-                    onPageChanged: (index) {
-                      setState(() {
-                        currentIndex = index;
-                      });
-                    },
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          changePage(index);
-                        },
-                        child: Column(
-                          children: [
-                            Expanded(child: Image.asset(ImageConstants.productOne.toPng, fit: BoxFit.cover)),
-                            const Text(
-                              "21WN reversible angora cardigan",
-                              textAlign: TextAlign.center,
-                            ),
-                            const Text(
-                              "\$120",
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                  child: FutureBuilder(
+                      future: FirebaseFirestore.instance.collection("dreeses").limit(3).get(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.hasData) {
+                          final response = snapshot.data;
+                          final dressesFirebase = response?.docs;
+                          if (dressesFirebase?.isEmpty ?? true) {
+                            return const Center(
+                              child: Text("Liste Boş"),
+                            );
+                          }
+                          return PageViewThreePage(dreses: dressesFirebase!);
+                        } else {
+                          return const Center(
+                            child: Text("Hata çıktı"),
+                          );
+                        }
+                      }),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -383,6 +406,50 @@ class _SecondPageState extends State<SecondPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class PageViewThreePage extends StatefulWidget {
+  const PageViewThreePage({
+    Key? key,
+    required this.dreses,
+  }) : super(key: key);
+  final List<QueryDocumentSnapshot<Map<String, dynamic>>> dreses;
+
+  @override
+  State<PageViewThreePage> createState() => _PageViewThreePageState();
+}
+
+class _PageViewThreePageState extends State<PageViewThreePage> {
+  @override
+  Widget build(BuildContext context) {
+    return PageView.builder(
+      scrollDirection: Axis.horizontal,
+      padEnds: false,
+      itemCount: 3,
+      onPageChanged: (index) {
+        setState(() {
+          currentIndex = index;
+        });
+      },
+      itemBuilder: (context, index) {
+        final Map<String, dynamic> dress = widget.dreses[index].data();
+
+        return Column(
+          children: [
+            Expanded(child: Image.network(dress["imageUrl"], fit: BoxFit.cover)),
+            Text(
+              dress["description"],
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              dress["price"].toString() ?? "10\$",
+              textAlign: TextAlign.center,
+            ),
+          ],
+        );
+      },
     );
   }
 }
